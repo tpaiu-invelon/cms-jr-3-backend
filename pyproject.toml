@@ -1,3 +1,17 @@
+[project]
+name = "cms-jr-3-backend"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+"Django==6.1.3",
+"djangorestframework==3.18.3",
+"django-filter==26.2",
+"django-cors-headers==4.9.0",
+"python-dotenv==1.0.1",
+"psycopg[binary]==3.2.3",
+"dj-database-url==2.3.0",
+"whitenoise==6.9.0",
+]
 [tool.ruff.lint]
 ignore = ["RUF012"]
 
