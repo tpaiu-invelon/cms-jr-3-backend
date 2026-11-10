@@ -28,7 +28,7 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = "False"
+DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
 
 ALLOWED_HOSTS = [
@@ -61,6 +61,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -141,7 +142,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
@@ -168,19 +169,20 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     origin.strip()
     for origin in os.environ.get(
-        "CORS_ALLOWED_ORIGINS", "http://localhost:8000,http://127.0.0.1:8000"
+        "CORS_ALLOWED_ORIGINS",
+        "http://localhost:5173"
     ).split(",")
     if origin.strip()
 ]
-CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://.*\.vercel\.app$"]
-CORS_ALLOW_CREDENTIALS = True
+
 
 # --- Seguridad para producción (HTTPS detrás del proxy de Vercel) ---
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
     for origin in os.environ.get(
-        "CSRF_TRUSTED_ORIGINS", "https://*.vercel.app"
+        "CSRF_TRUSTED_ORIGINS",
+        "http://localhost:8000"
     ).split(",")
     if origin.strip()
 ]
