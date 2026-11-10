@@ -1,0 +1,30 @@
+# Entorno y secretos
+.env
+.env.*
+!.env.example
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Django
+db.sqlite3
+db_backup.sqlite3
+staticfiles/
+media/
+
+# Backups locales
+backups/
+
+# Vercel
+.vercel/
+
+# IDE / SO
+.idea/
+.vscode/
+.DS_Store

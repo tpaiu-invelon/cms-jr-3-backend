@@ -1,0 +1,19 @@
+# Genesal Jr. — base dependencies
+# Pinned so every intern's environment is identical.
+# Rule: add ONLY what you install directly. Do NOT run `pip freeze > requirements.txt`
+# blindly — it dumps every sub-dependency and makes reviews unreadable.
+
+Django==6.1.3
+djangorestframework==3.18.3
+django-filter==26.2
+django-cors-headers==4.9.0
+python-dotenv==1.0.1
+django-filter==26.2
+
+# --- production (Vercel) ---
+psycopg[binary]==3.2.3
+dj-database-url==2.3.0
+
+# --- dev / testing ---
+pytest==8.3.4
+pytest-django==4.9.0

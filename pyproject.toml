@@ -1,0 +1,8 @@
+[tool.ruff.lint]
+ignore = ["RUF012"]
+
+[tool.vercel]
+entrypoint = "config.asgi:application"
+
+[tool.vercel.scripts]
+build = "python manage.py migrate --noinput"
