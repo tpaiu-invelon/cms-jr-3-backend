@@ -31,13 +31,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
 
-ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.environ.get(
-        "ALLOWED_HOSTS",
-    ).split(",")
-    if host.strip()
-]
+#ALLOWED_HOSTS = ["ALLOWED_HOSTS"]
 
 
 # Application definition
@@ -49,10 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
-    'corsheaders',
     'accounts',
     'catalogue',
 ]
@@ -166,14 +160,7 @@ REST_FRAMEWORK = {
 }
 
 # --- CORS (frontend puede vivir en otro puerto/origen) ---
-CORS_ALLOWED_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get(
-        "CORS_ALLOWED_ORIGINS",
-        "http://localhost:5173"
-    ).split(",")
-    if origin.strip()
-]
+CORS_ALLOWED_ORIGINS = ["CORS_ALLOWED_ORIGINS"]
 CORS_ALLOW_ALL_ORIGINS = True
 
 # --- Seguridad para producción (HTTPS detrás del proxy de Vercel) ---
