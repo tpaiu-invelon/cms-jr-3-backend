@@ -174,7 +174,7 @@ CORS_ALLOWED_ORIGINS = [
     ).split(",")
     if origin.strip()
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 # --- Seguridad para producción (HTTPS detrás del proxy de Vercel) ---
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -188,6 +188,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
+
 
 
 ASGI_APPLICATION = 'config.asgi.application'
